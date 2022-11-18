@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+          rel="stylesheet">
+    <style>
+        /*모바일용 CSS*/
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        p, h3 {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3 {
+            font-weight: bold;
+        }
+
+        .header {
+            display: block;
+
+
+        }
+
+        .header h1 {
+            color: #E8344E;
+            margin: 60px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+        }
+
+        .container-fluid {
+            max-width: 1000px;
+        }
+
+        .picture {
+            position: relative;
+        }
+
+        .picture .img_box {
+            position: relative;
+            max-width: 350px;
+            height: 483px;
+            background-color: #d9d9d9;
+            border-radius: 20px;
+        }
+
+        .picture img {
+            width: 292px;
+            height: 440px;
+        }
+
+        .intro h3 {
+            font-size: 1.2rem;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .guest {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            font-weight: 800;
+        }
+
+        .guest h2 {
+            color: #4E4E4E;
+            margin-top: 80px;
+            font-family: 'Inter', sans-serif;
+            font-size: 48px;
+        }
+
+        #save {
+            background-color: #E8344E;
+            border: none
+        }
+
+        .text_center {
+            text-align: center;
+        }
+
+        .box_center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .clear:after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+
+        .float-left {
+            float: left;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        .comment-box {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 5px;
+        }
+
+        @media all and  (max-width: 767px) {
+            .intro {
+                text-align: center;
+                margin-top: 80px;
+            }
+        }
+
+        .back {
+            float: right;
+            width: 50px;
+            background: #e8344e;
+            border: 0;
+            border-radius: 5px;
+            color: white;
+            margin: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            show_comment()
+        });
+
+        function save_comment() {
+            let name = $('#name').val()
+            let comment = $('#comment').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/teamIntro',
+                data: {name_give: name, comment_give: comment},
+                success: function (response) {
+                    alert(response['msg'])
+
+                }
+            })
+        }
+
+        function show_comment() {
+            $.ajax({
+                type: "GET",
+                url: "/teamIntro",
+                data: {},
+                success: function (response) {
+                    let rows = (response)['comments']
+
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let comment = rows[i]['comment']
+                        let num = rows[i]['num']
+                        let done = rows[i]['done']
+
+                        let temp_html = ``
+                        if (done == 0) {
+                            temp_html = `<div class="comment-box clear mx-3">
+                                            <div class="float-left">
+                                                <blockquote class="blockquote m-3">
+                                                  <p class="mb-3">${comment}</p>
+                                                  <footer class="blockquote-footer">${name}</cite></footer>
+                                                </blockquote>
+                                            </div>
+                                            <div class="float-right mt-4 me-3">
+                                                <button type="button" class="btn btn-primary" onclick="delete_comment(${num})">삭제</button>
+                                            </div>
+                                        </div>`
+                        } else {
+                            temp_html = ``
+                        }
+                        $('#comment-list').append(temp_html)
+                    }
+                }
+            });
+        }
+
+        function delete_comment(num) {
+            console.log(num)
+            $.ajax({
+                type: "POST",
+                url: "/teamIntro/done",
+                data: {num_give: num},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+    </script>
+    <title>팀소개페이지</title>
+</head>
+<body>
+<div class="header text_center">
+    <h1>Introduction</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="picture col-sm-12 col-md-6">
+            <div class="img_box box_center">
+                <img alt="본인사진" class="box_center" src="https://ifh.cc/g/YwQxcO.jpg">
+            </div>
+        </div>
+        <div class="intro col-sm-12  col-md-6">
+            <h3>이름</h3>
+            <p>이정기</p>
+            <h3>MBTI</h3>
+            <p>활동가 ENFP</p>
+            <h3>장점</h3>
+            <p>긍정적으로 생각합니다.<br>
+                모든 일에 열정 입니다.<br>
+                밝은 에너지가 있습니다.<br>
+                어른을 공경할 줄 압니다.<br>
+                음식을 잘 남기지 않습니다.<br>
+            </p>
+            <h3>협업 스타일</h3>
+            <p>일상적인 커뮤니케이션을 가져<br>
+                관계를 형성하고, 부족한 부분 부터<br>
+                채워 나아갑니다.<br></p>
+            <h3>벨로그</h3>
+            <button class="btn btn-link" type="button">https://velog.io/@wjdrl3122</button>
+        </div>
+    </div>
+</div>
+
+<div class="guest">
+    <h2 class="text_center">Guest Boot</h2>
+    <form action="">
+        <!-- Name input -->
+        <div class="form-outline mb-2 mx-3">
+            <input class="form-control" id="name" placeholder="name" type="text"/>
+        </div>
+
+        <!-- Message input -->
+        <div class="form-outline mb-3 mx-3">
+            <input class="form-control" id="comment" placeholder="commnet" type="text"/>
+        </div>
+        <button class="btn btn-primary btn-block mb-4 mx-3" id="save" onclick="save_comment()" type="submit">Save
+        </button>
+    </form>
+
+    <div id="comment-list">
+
+    </div>
+    <div style="width: 100%; max-width:960px; margin: auto;">
+        <div class="back" onclick="location.href='http://127.0.0.1:5000/'">Back</div>
+    </div>
+</div>
+</body>
+</html>

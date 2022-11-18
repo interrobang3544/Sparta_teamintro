@@ -1,0 +1,157 @@
+*, pre {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px;
+    font-weight: 700;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 700;
+}
+
+.title {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.back {
+    background: #e8344e;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+}
+
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 25px 0 rgb(0 0 0 / 15%);
+}
+
+.sparta-box {
+    background: #e8344e;
+    border: none;
+    border-radius: 20px;
+    color: #f1f3f5;
+    padding-left: 10px;
+    font-weight: 700;
+}
+
+p {
+    padding-top: 2px;
+    padding-left: 10px;
+}
+
+.self-image {
+    width: 80%;
+    height: 400px;
+    background-image: url('https://pbs.twimg.com/media/EeOJ074U8AAptth?format=jpg&name=large');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+
+}
+
+pre {
+    background-color: #f1f3f5;
+    border-radius: 16px;
+    white-space: pre-line;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+
+.member-card {
+    justify-content: center;
+}
+
+.card-title{
+    text-align: center;
+    font-weight: 700;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+}
+
+.mypost {
+    width: 100%;
+    background: #e8344e;
+    border-radius: 16px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.mypost > button {
+    margin-top: 10px;
+}
+
+.btn-edit {
+    width: 90%;
+    height: 34px;
+    font-size: 14px;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#aside {
+    position: fixed;
+    width: 180px;
+    right: 50%;
+    top: 88px;
+    padding: 20px;
+    margin-right: -600px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 25px 0 rgb(0 0 0 / 15%);
+}
+
+@media (max-width: 1240px) {
+    #aside {
+        display: none;
+    }
+}
+
+#aside > h4, #aside > p {
+    font-weight: 700;
+}
+
+#city, #temp, #temp_max, #temp_min, #wind_speed {
+    font-weight: 100;
+}
+
+i {
+    color: #e8344e;
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-position: center;
+    margin: 10px;
+}

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="{{ url_for('static', filename='styles/styleMember4.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='scripts/scriptMember4.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/0273197c54.js"></script>
+    <title>멤버 소개 - 천준기</title>
+</head>
+
+<body>
+<h1>Introduction</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="sparta-box">Name</div>
+            <p>천준기</p>
+            <div class="sparta-box">Age</div>
+            <p>26</p>
+            <div class="sparta-box">MBTI</div>
+            <p>INFP</p>
+            <div class="sparta-box">Hobbies</div>
+            <p>게임, 코인노래방</p>
+            <div class="sparta-box">Objective</div>
+            <p>자기주도학습 습관과 협업 능력 향상</p>
+        </div>
+        <!--        <div class="col-1"></div>-->
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col">
+                    <div class="self-image"></div>
+                </div>
+            </div>
+            <div class="row contact">
+                <button class="email" id="email" onclick="copyToClipBoard()"></button>
+                <div class="tistory" onclick="window.open(href='https://interrobang.tistory.com/')"
+                     style="cursor:pointer;"></div>
+                <div class="github" onclick="window.open(href='https://github.com/interrobang3544')"
+                     style="cursor:pointer;"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="text-box">
+        <pre>
+            안녕하세요.
+            내일배움캠프 4기 B반 팔색조의 팀원 천준기입니다.
+
+            객관적으로 살펴본 저의 장점은 크게 두 가지로 긍정적인 마인드와 높은 몰입력이라고 생각합니다. 또한, 협업을 하는 과정에서의 가장 큰 특징은 다른 사람의 의견을 최대한 수용하려 노력하고 서로 다른 의견의 강점들을 잘 파악하여 조화시키고자 하는 점입니다.
+
+            사전캠프에서 만난 팀원들, 지금 첫 프로젝트를 위해 만난 팀원들 모두 비슷한 목표를 가지고 모여 함께하니 벌써 여러 작은 성장들을 이루었고, 앞으로의 성장도 너무 기대됩니다. 계속 같이 노력해서 좋은 성과도 만들고, 짧은 인연이지만 잊지말아요~
+        </pre>
+    </div>
+</div>
+
+<h1>Guest Book</h1>
+<div class="container">
+    <div class="mypost">
+        <div class="form-floating mb-3">
+            <input class="form-control" id="name" placeholder="url" style="border-radius: 10px;" type="text">
+            <label for="floatingInput">닉네임</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="comment" placeholder="Leave a comment here"
+                      style="height: 100px; border-radius: 10px;"></textarea>
+            <label for="floatingTextarea2">내용</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="password" placeholder="url" style="border-radius: 10px;" type="text">
+            <label for="floatingInput">수정 및 삭제에 필요한 비밀번호</label>
+        </div>
+        <button class="btn btn-dark" onclick="save_comment()" type="button">방명록 남기기</button>
+    </div>
+    <div class="mycards" id="comment-list"></div>
+    <div style="width: 100%; max-width:800px; margin: auto; display: flex; justify-content: right;">
+        <div class="back" onclick="location.href='http://127.0.0.1:5000/'">Back</div>
+    </div>
+</div>
+</body>
+</html>
